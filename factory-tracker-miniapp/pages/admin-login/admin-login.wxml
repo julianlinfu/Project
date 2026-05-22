@@ -1,0 +1,8 @@
+<view class="page-wrap">
+  <view class="form-group">
+    <text class="label">管理员密码</text>
+    <input class="input" type="password" placeholder="演示密码：1234" value="{{password}}" bindinput="onPwdInput" />
+  </view>
+
+  <button class="btn-primary" bindtap="login">进入管理看板</button>
+</view>

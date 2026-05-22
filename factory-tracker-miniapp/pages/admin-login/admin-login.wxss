@@ -1,0 +1,43 @@
+.page-wrap {
+  max-width: 960rpx;
+  margin: 0 auto;
+  padding: 40rpx 32rpx;
+}
+
+.form-group {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 12rpx;
+}
+
+.input {
+  width: 100%;
+  padding: 24rpx 28rpx;
+  border: 1rpx solid var(--color-border);
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 28rpx;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 16rpx;
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+}

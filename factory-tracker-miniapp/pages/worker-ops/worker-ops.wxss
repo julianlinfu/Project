@@ -1,0 +1,122 @@
+.page-wrap {
+  max-width: 960rpx;
+  margin: 0 auto;
+  padding: 32rpx;
+}
+
+.info-bar {
+  background: var(--color-accent-light);
+  border-radius: 16rpx;
+  padding: 20rpx 28rpx;
+  font-size: 26rpx;
+  color: var(--color-accent);
+  margin-bottom: 36rpx;
+  font-weight: 500;
+}
+
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.step-card {
+  background: var(--color-surface);
+  border: 1rpx solid var(--color-border);
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.step-name {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.step-meta {
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+  margin-bottom: 24rpx;
+}
+
+.badge {
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 6rpx 18rpx;
+  border-radius: 40rpx;
+}
+
+.badge-pending {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.badge-active {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.badge-done {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.step-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-step {
+  flex: 1;
+  padding: 20rpx;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  border: 1rpx solid transparent;
+}
+
+.btn-start {
+  background: var(--color-success-light);
+  color: var(--color-success);
+  border-color: #bbf7d0;
+}
+
+.btn-finish {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  border-color: #bfdbfe;
+}
+
+.btn-waiting {
+  background: #f9fafb;
+  color: #9ca3af;
+  border-color: var(--color-border);
+}
+
+.btn-step:active {
+  opacity: 0.75;
+}
+
+.step-time-info {
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  flex-wrap: wrap;
+}
+
+.duration-tag {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+  font-size: 22rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  font-weight: 500;
+}

@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/worker-login/worker-login",
+    "pages/worker-ops/worker-ops",
+    "pages/admin-login/admin-login",
+    "pages/admin-dash/admin-dash"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#1a1a1a",
+    "navigationBarTitleText": "流水线管理",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f4"
+  }
+}

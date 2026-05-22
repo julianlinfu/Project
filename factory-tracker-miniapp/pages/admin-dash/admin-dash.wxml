@@ -1,0 +1,35 @@
+<view class="page-wrap">
+  <view class="tab-bar">
+    <button class="tab {{tab === 'active' ? 'active' : ''}}" data-tab="active" bindtap="switchTab">进行中</button>
+    <button class="tab {{tab === 'done' ? 'active' : ''}}" data-tab="done" bindtap="switchTab">已完成</button>
+  </view>
+
+  <button class="btn-new-batch" bindtap="createBatch">＋ 新建批次</button>
+
+  <view wx:if="{{batches.length === 0}}" class="empty-state">
+    <text class="empty-icon">📭</text>
+    <text>暂无{{tab === 'done' ? '已完成' : '进行中'}}的批次</text>
+  </view>
+
+  <view class="batch-list">
+    <view class="batch-card" wx:for="{{batches}}" wx:key="id">
+      <view class="batch-header">
+        <text class="batch-id">{{item.id}}</text>
+        <text class="batch-meta">{{item.qty}}件 · {{item.pct}}%</text>
+      </view>
+
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{item.pct}}%"></view>
+      </view>
+
+      <view class="step-row" wx:for="{{item.steps}}" wx:key="name">
+        <text class="step-left">{{item.name}}{{item.worker ? ' · ' + item.worker : ''}}</text>
+        <view class="step-right">
+          <text>{{item.timeStr}}</text>
+          <text wx:if="{{item.duration}}" class="duration-tag">{{item.duration}}</text>
+          <text class="badge {{item.badgeClass}}">{{item.badgeText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

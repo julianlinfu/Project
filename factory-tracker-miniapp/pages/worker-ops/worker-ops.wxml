@@ -1,0 +1,39 @@
+<view class="page-wrap" wx:if="{{batch}}">
+  <view class="info-bar">
+    <text>批次：{{batch.id}}  |  数量：{{batch.qty}}件  |  工人：{{batch.worker}}</text>
+  </view>
+
+  <view class="steps-list">
+    <view class="step-card" wx:for="{{steps}}" wx:key="index">
+      <view class="step-header">
+        <text class="step-name">{{index + 1}}. {{item.name}}</text>
+        <text class="badge {{item.badgeClass}}">{{item.badgeText}}</text>
+      </view>
+
+      <view class="step-meta">
+        <text>{{item.worker ? '操作人：' + item.worker : '暂未分配'}}</text>
+      </view>
+
+      <!-- 已完成：显示时间 -->
+      <view wx:if="{{item.status === 'done'}}" class="step-time-info">
+        <text>{{item.startTime}} → {{item.endTime}}</text>
+        <text wx:if="{{item.duration}}" class="duration-tag">{{item.duration}}</text>
+      </view>
+
+      <!-- 进行中：标记完成按钮 -->
+      <view wx:if="{{item.status === 'active'}}" class="step-actions">
+        <button class="btn-step btn-finish" data-index="{{item.index}}" bindtap="completeStep">✓ 标记完成</button>
+      </view>
+
+      <!-- 未开始且上一道已完成 -->
+      <view wx:if="{{item.status === 'pending' && item.prevDone}}" class="step-actions">
+        <button class="btn-step btn-start" data-index="{{item.index}}" bindtap="startStep">▶ 开始此工序</button>
+      </view>
+
+      <!-- 未开始且上一道未完成 -->
+      <view wx:if="{{item.status === 'pending' && !item.prevDone}}" class="step-actions">
+        <button class="btn-step btn-waiting" disabled>等待上一道工序完成</button>
+      </view>
+    </view>
+  </view>
+</view>

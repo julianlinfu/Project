@@ -1,0 +1,147 @@
+.page-wrap {
+  max-width: 960rpx;
+  margin: 0 auto;
+  padding: 32rpx;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 28rpx;
+}
+
+.tab {
+  flex: 1;
+  padding: 18rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 26rpx;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.tab.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.btn-new-batch {
+  width: 100%;
+  padding: 24rpx;
+  background: none;
+  border: 3rpx dashed var(--color-border);
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: var(--color-text-muted);
+  margin-bottom: 28rpx;
+}
+
+.batch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.batch-card {
+  background: var(--color-surface);
+  border: 1rpx solid var(--color-border);
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.batch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.batch-id {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.batch-meta {
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: #f3f4f6;
+  border-radius: 6rpx;
+  margin-bottom: 24rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-success);
+  border-radius: 6rpx;
+  transition: width 0.4s ease;
+}
+
+.step-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14rpx 0;
+  border-top: 1rpx solid var(--color-border);
+  font-size: 24rpx;
+}
+
+.step-left {
+  color: var(--color-text-muted);
+}
+
+.step-right {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.duration-tag {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+  font-size: 22rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  font-weight: 500;
+}
+
+.badge {
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 4rpx 14rpx;
+  border-radius: 40rpx;
+}
+
+.badge-pending {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.badge-active {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.badge-done {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 100rpx 40rpx;
+  color: var(--color-text-muted);
+  font-size: 28rpx;
+}
+
+.empty-icon {
+  font-size: 72rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}

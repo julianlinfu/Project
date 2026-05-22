@@ -1,0 +1,18 @@
+<view class="page-wrap">
+  <view class="form-group">
+    <text class="label">你的姓名</text>
+    <input class="input" placeholder="例如：张伟" value="{{workerName}}" bindinput="onNameInput" />
+  </view>
+
+  <view class="form-group">
+    <text class="label">选择批次</text>
+    <picker bindchange="onBatchChange" value="{{batchIndex}}" range="{{batches}}" range-key="id">
+      <view class="picker-view">
+        <text wx:if="{{batches.length > 0}}">{{batches[batchIndex].id}}（{{batches[batchIndex].qty}}件）</text>
+        <text wx:else class="picker-placeholder">暂无进行中的批次</text>
+      </view>
+    </picker>
+  </view>
+
+  <button class="btn-primary" bindtap="login">进入工序页面</button>
+</view>

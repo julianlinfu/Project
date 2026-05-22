@@ -1,0 +1,404 @@
+/* ============================================
+   流水线管理系统 - 样式文件
+   如需修改主题色，只改 :root 里的变量即可
+   ============================================ */
+
+/* ---- 主题变量 ---- */
+:root {
+  --color-primary: #1a1a1a;
+  --color-accent: #2563eb;
+  --color-accent-light: #eff6ff;
+  --color-success: #16a34a;
+  --color-success-light: #f0fdf4;
+  --color-warning: #d97706;
+  --color-warning-light: #fffbeb;
+  --color-danger: #dc2626;
+  --color-bg: #f5f5f4;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* ---- 基础重置 ---- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* ---- 页面切换 ---- */
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: block; }
+
+/* ---- 首页 ---- */
+.home-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 24px;
+}
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-icon {
+  font-size: 52px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.logo-area h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.role-list {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.role-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+
+.role-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.role-card:active { transform: scale(0.98); }
+
+.role-emoji { font-size: 28px; flex-shrink: 0; }
+.role-name { font-size: 16px; font-weight: 600; }
+.role-desc { font-size: 13px; color: var(--color-text-muted); margin-top: 2px; }
+.arrow { margin-left: auto; font-size: 18px; color: var(--color-text-muted); }
+
+/* ---- 通用页面布局 ---- */
+.page-wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.top-bar h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: var(--color-accent);
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+}
+
+/* ---- 表单 ---- */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+input[type=text],
+input[type=password],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input:focus, select:focus {
+  border-color: var(--color-accent);
+}
+
+/* ---- 按钮 ---- */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.15s;
+}
+
+.btn-primary:hover { opacity: 0.88; }
+.btn-primary:active { opacity: 0.75; }
+
+.btn-new-batch {
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  margin-bottom: 14px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btn-new-batch:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ---- 批次信息条 ---- */
+.batch-info-bar {
+  background: var(--color-accent-light);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--color-accent);
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+/* ---- 工序卡片 ---- */
+.step-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.step-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.step-meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+/* 状态徽章 */
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.badge-pending {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+.badge-active {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+.badge-done {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+/* 工序操作按钮 */
+.step-actions { display: flex; gap: 8px; }
+
+.btn-step {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s;
+}
+.btn-step:active { opacity: 0.75; }
+
+.btn-start {
+  background: var(--color-success-light);
+  color: var(--color-success);
+  border-color: #bbf7d0;
+}
+.btn-finish {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  border-color: #bfdbfe;
+}
+.btn-waiting {
+  background: #f9fafb;
+  color: #9ca3af;
+  border-color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.step-time-info {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.duration-tag {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+/* ---- 管理看板 ---- */
+.tab-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.tab {
+  flex: 1;
+  padding: 9px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* 管理批次卡片 */
+.admin-batch-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.admin-batch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.admin-batch-id {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.admin-batch-meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* 进度条 */
+.progress-bar {
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-success);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* 工序明细行 */
+.step-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-top: 1px solid var(--color-border);
+  font-size: 12px;
+}
+
+.step-row-left { color: var(--color-text-muted); }
+.step-row-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text);
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.empty-state .empty-icon { font-size: 36px; margin-bottom: 10px; }
