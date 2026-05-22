@@ -24,9 +24,31 @@
     "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true
+    "useApiHostProcess": true,
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "ignoreDevUnusedFiles": false,
+    "swc": false,
+    "disableSWC": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "ignoreUploadUnusedFiles": false
   },
   "appid": "touristappid",
   "projectname": "factory-tracker",
-  "libVersion": "3.3.4"
+  "libVersion": "3.3.4",
+  "compileType": "miniprogram",
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
 }

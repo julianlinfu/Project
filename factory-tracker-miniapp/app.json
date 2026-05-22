@@ -1,10 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/register/register",
     "pages/worker-login/worker-login",
     "pages/worker-ops/worker-ops",
     "pages/admin-login/admin-login",
-    "pages/admin-dash/admin-dash"
+    "pages/admin-dash/admin-dash",
+    "pages/create-order/create-order"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1a1a1a",

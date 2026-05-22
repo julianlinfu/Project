@@ -1,0 +1,15 @@
+<view class="page-wrap">
+  <view class="reg-header">
+    <text class="reg-icon">👤</text>
+    <text class="reg-title">完善你的信息</text>
+    <text class="reg-desc">微信昵称：{{nickname}}</text>
+  </view>
+
+  <view class="form-group">
+    <text class="label">昵称</text>
+    <input class="input" placeholder="请输入你的昵称，例如：李强" value="{{realName}}" bindinput="onNameInput" />
+    <text class="input-hint">管理员将看到你的昵称，用于审批</text>
+  </view>
+
+  <button class="btn-primary" bindtap="submit">提交，等待管理员审批</button>
+</view>

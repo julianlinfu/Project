@@ -1,33 +1,89 @@
 <view class="page-wrap">
   <view class="tab-bar">
-    <button class="tab {{tab === 'active' ? 'active' : ''}}" data-tab="active" bindtap="switchTab">进行中</button>
-    <button class="tab {{tab === 'done' ? 'active' : ''}}" data-tab="done" bindtap="switchTab">已完成</button>
+    <button class="tab {{section === 'users' ? 'active' : ''}}" data-section="users" bindtap="switchSection">员工管理</button>
+    <button class="tab {{section === 'orders' ? 'active' : ''}}" data-section="orders" bindtap="switchSection">工单管理</button>
+    <button class="tab {{section === 'recycle' ? 'active' : ''}}" data-section="recycle" bindtap="switchSection">回收站</button>
   </view>
 
-  <button class="btn-new-batch" bindtap="createBatch">＋ 新建批次</button>
-
-  <view wx:if="{{batches.length === 0}}" class="empty-state">
-    <text class="empty-icon">📭</text>
-    <text>暂无{{tab === 'done' ? '已完成' : '进行中'}}的批次</text>
+  <!-- ========== 员工管理 ========== -->
+  <view wx:if="{{section === 'users'}}">
+    <view wx:if="{{users.length === 0}}" class="empty-state">
+      <text class="empty-icon">📭</text><text>暂无注册用户</text>
+    </view>
+    <view class="user-list">
+      <view class="user-card" wx:for="{{users}}" wx:key="id">
+        <view class="user-top">
+          <view class="user-names"><text class="user-nickname">{{item.nickname}}</text><text class="user-realname">{{item.realName}}</text></view>
+          <text class="role-badge {{item.roleClass}}">{{item.roleLabel}}</text>
+        </view>
+        <view class="user-meta"><text>{{item.createdAt}}</text></view>
+        <view class="user-actions">
+          <button class="btn-sm btn-edit" data-id="{{item.id}}" data-name="{{item.realName}}" bindtap="editUserName">✎ 改昵称</button>
+          <button wx:if="{{item.role === 'pending'}}" class="btn-sm btn-approve" data-id="{{item.id}}" bindtap="approveUser">✓ 通过审批</button>
+          <button wx:if="{{item.role === 'worker'}}" class="btn-sm btn-disable" data-id="{{item.id}}" bindtap="disableUser">⊘ 停用</button>
+          <button wx:if="{{item.role === 'disabled'}}" class="btn-sm btn-approve" data-id="{{item.id}}" bindtap="approveUser">↻ 重新启用</button>
+        </view>
+      </view>
+    </view>
   </view>
 
-  <view class="batch-list">
-    <view class="batch-card" wx:for="{{batches}}" wx:key="id">
-      <view class="batch-header">
-        <text class="batch-id">{{item.id}}</text>
-        <text class="batch-meta">{{item.qty}}件 · {{item.pct}}%</text>
-      </view>
+  <!-- ========== 工单管理 ========== -->
+  <view wx:if="{{section === 'orders'}}">
+    <view class="tab-bar sub-tabs">
+      <button class="tab {{orderTab === 'active' ? 'active' : ''}}" data-tab="active" bindtap="switchOrderTab">进行中</button>
+      <button class="tab {{orderTab === 'done' ? 'active' : ''}}" data-tab="done" bindtap="switchOrderTab">已完成</button>
+    </view>
+    <button class="btn-new-order" bindtap="goCreateOrder">＋ 新建工单</button>
 
-      <view class="progress-bar">
-        <view class="progress-fill" style="width: {{item.pct}}%"></view>
-      </view>
+    <view wx:if="{{orders.length === 0}}" class="empty-state">
+      <text class="empty-icon">📭</text><text>暂无{{orderTab === 'done' ? '已完成' : '进行中'}}的工单</text>
+    </view>
 
-      <view class="step-row" wx:for="{{item.steps}}" wx:key="name">
-        <text class="step-left">{{item.name}}{{item.worker ? ' · ' + item.worker : ''}}</text>
-        <view class="step-right">
-          <text>{{item.timeStr}}</text>
-          <text wx:if="{{item.duration}}" class="duration-tag">{{item.duration}}</text>
-          <text class="badge {{item.badgeClass}}">{{item.badgeText}}</text>
+    <view class="order-list">
+      <view class="order-card" wx:for="{{orders}}" wx:key="id">
+        <view class="order-header">
+          <text class="order-name">{{item.name}}</text>
+          <view class="order-actions-top">
+            <text class="action-icon" data-id="{{item.id}}" bindtap="editOrder">✎</text>
+            <text class="action-icon action-del" data-id="{{item.id}}" bindtap="deleteOrder">🗑</text>
+          </view>
+        </view>
+        <view class="order-info">
+          <text class="order-id">{{item.id}}</text>
+          <text wx:if="{{item.productType}}" class="order-type">{{item.productType}}</text>
+          <text wx:if="{{item.deadlineLabel}}" class="order-deadline">{{item.deadlineLabel}}</text>
+        </view>
+        <view wx:if="{{item.alerts}}" class="order-alerts">⚠ {{item.alerts}}</view>
+        <view wx:if="{{item.notes}}" class="order-notes">{{item.notes}}</view>
+        <view class="progress-bar"><view class="progress-fill" style="width: {{item.pct}}%"></view></view>
+        <view class="order-meta-row"><text>{{item.qty}}件 · {{item.pct}}%</text></view>
+        <view class="step-row" wx:for="{{item.steps}}" wx:key="name">
+          <text class="step-left">{{item.name}}{{item.worker ? ' · ' + item.worker : ''}}</text>
+          <view class="step-right"><text>{{item.timeStr}}</text><text wx:if="{{item.duration}}" class="duration-tag">{{item.duration}}</text><text class="badge {{item.badgeClass}}">{{item.badgeText}}</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 回收站 ========== -->
+  <view wx:if="{{section === 'recycle'}}">
+    <view class="recycle-hint">超过60天的工单将自动清理</view>
+    <view wx:if="{{deletedOrders.length === 0}}" class="empty-state">
+      <text class="empty-icon">🗑</text><text>回收站为空</text>
+    </view>
+    <view class="order-list">
+      <view class="order-card deleted" wx:for="{{deletedOrders}}" wx:key="id">
+        <view class="order-header">
+          <text class="order-name">{{item.name}}</text>
+          <text class="deleted-badge">已删除 {{item.daysAgo}}</text>
+        </view>
+        <view class="order-info">
+          <text class="order-id">{{item.id}}</text>
+          <text wx:if="{{item.productType}}" class="order-type">{{item.productType}}</text>
+        </view>
+        <view class="user-actions">
+          <button class="btn-sm btn-approve" data-id="{{item.id}}" bindtap="restoreOrder">↻ 恢复</button>
+          <button class="btn-sm btn-disable" data-id="{{item.id}}" bindtap="permanentDeleteOrder">✕ 彻底删除</button>
         </view>
       </view>
     </view>

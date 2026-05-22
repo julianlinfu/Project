@@ -10,7 +10,26 @@
   padding: 20rpx 28rpx;
   font-size: 26rpx;
   color: var(--color-accent);
-  margin-bottom: 36rpx;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.info-line {
+  display: block;
+}
+
+.info-line + .info-line {
+  margin-top: 6rpx;
+}
+
+.alert-bar {
+  font-size: 26rpx;
+  color: #dc2626;
+  background: #fff5f5;
+  border: 1rpx solid #fecaca;
+  border-radius: 16rpx;
+  padding: 16rpx 24rpx;
+  margin-bottom: 24rpx;
   font-weight: 500;
 }
 
@@ -52,20 +71,9 @@
   border-radius: 40rpx;
 }
 
-.badge-pending {
-  background: #f3f4f6;
-  color: #6b7280;
-}
-
-.badge-active {
-  background: var(--color-warning-light);
-  color: var(--color-warning);
-}
-
-.badge-done {
-  background: var(--color-success-light);
-  color: var(--color-success);
-}
+.badge-pending { background: #f3f4f6; color: #6b7280; }
+.badge-active { background: var(--color-warning-light); color: var(--color-warning); }
+.badge-done { background: var(--color-success-light); color: var(--color-success); }
 
 .step-actions {
   display: flex;
@@ -119,4 +127,12 @@
   padding: 4rpx 14rpx;
   border-radius: 20rpx;
   font-weight: 500;
+}
+
+.admin-link {
+  text-align: center;
+  margin-top: 60rpx;
+  font-size: 26rpx;
+  color: #9ca3af;
+  text-decoration: underline;
 }

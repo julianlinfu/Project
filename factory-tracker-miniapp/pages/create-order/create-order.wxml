@@ -1,0 +1,35 @@
+<view class="page-wrap">
+  <view class="form-item">
+    <text class="label">工单名称 *</text>
+    <input class="input" placeholder="例如：客户XX画册订单" value="{{name}}" data-field="name" bindinput="onInput" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">产品类型/规格 *</text>
+    <input class="input" placeholder="例如：A4画册 200g铜版纸" value="{{productType}}" data-field="productType" bindinput="onInput" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">数量（件）*</text>
+    <input class="input" type="number" placeholder="500" value="{{qty}}" data-field="qty" bindinput="onInput" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">交付截止日期</text>
+    <picker mode="date" value="{{deadline}}" bindchange="onDeadlineChange">
+      <view class="input picker-val">{{deadline || '点击选择日期'}}</view>
+    </picker>
+  </view>
+
+  <view class="form-item">
+    <text class="label">备注/说明</text>
+    <textarea class="textarea" placeholder="生产工艺要求等" value="{{notes}}" data-field="notes" bindinput="onInput" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">醒目提醒</text>
+    <textarea class="textarea alert-area" placeholder="这批货需要特别注意的事项" value="{{alerts}}" data-field="alerts" bindinput="onInput" />
+  </view>
+
+  <button class="btn-primary" bindtap="submit">{{isEdit ? '保存修改' : '创建工单'}}</button>
+</view>

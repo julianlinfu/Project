@@ -3,7 +3,7 @@ const { Util } = require('../../utils/util');
 
 Page({
   data: {
-    batch: null,
+    order: null,
     steps: []
   },
 
@@ -13,22 +13,21 @@ Page({
 
   loadData() {
     const app = getApp();
-    const batchId = app.globalData.currentBatchId;
+    const orderId = app.globalData.currentOrderId;
     const worker = app.globalData.currentWorker;
-    if (!batchId) return;
+    if (!orderId) return;
 
-    const batch = Store.getBatch(batchId);
-    if (!batch) return;
+    const order = Store.getOrder(orderId);
+    if (!order) return;
 
-    const steps = batch.steps.map((step, i) => {
-      const prevDone = i === 0 || batch.steps[i - 1].status === 'done';
+    const steps = order.steps.map((step, i) => {
+      const prevDone = i === 0 || order.steps[i - 1].status === 'done';
+      const duration = Util.calcDuration(step.startTime, step.endTime);
 
       let badgeClass = 'badge-pending';
       let badgeText = '未开始';
       if (step.status === 'active') { badgeClass = 'badge-active'; badgeText = '进行中'; }
       if (step.status === 'done') { badgeClass = 'badge-done'; badgeText = '已完成'; }
-
-      const duration = Util.calcDuration(step.startTime, step.endTime);
 
       return {
         ...step,
@@ -41,9 +40,12 @@ Page({
     });
 
     this.setData({
-      batch: {
-        id: batch.id,
-        qty: batch.qty,
+      order: {
+        id: order.id,
+        name: order.name,
+        qty: order.qty,
+        productType: order.productType,
+        alerts: order.alerts,
         worker: worker,
       },
       steps
@@ -51,18 +53,22 @@ Page({
   },
 
   startStep(e) {
-    const batchId = this.data.batch.id;
+    const orderId = this.data.order.id;
     const i = e.currentTarget.dataset.index;
-    const worker = this.data.batch.worker;
-    Store.startStep(batchId, i, worker);
+    const worker = this.data.order.worker;
+    Store.startStep(orderId, i, worker);
     this.loadData();
   },
 
   completeStep(e) {
-    const batchId = this.data.batch.id;
+    const orderId = this.data.order.id;
     const i = e.currentTarget.dataset.index;
-    Store.completeStep(batchId, i);
+    Store.completeStep(orderId, i);
     this.loadData();
+  },
+
+  goAdmin() {
+    wx.navigateTo({ url: '/pages/admin-login/admin-login' });
   },
 
   onPullDownRefresh() {

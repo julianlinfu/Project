@@ -3,41 +3,45 @@ const { Util } = require('../../utils/util');
 
 Page({
   data: {
-    batches: [],
+    orders: [],
+    orderIndex: 0,
     workerName: ''
   },
 
   onShow() {
-    const batches = Store.getAllBatches().filter(b => !Util.isBatchDone(b));
+    const app = getApp();
+    const user = app.globalData.currentUser;
+    if (!user) {
+      wx.redirectTo({ url: '/pages/index/index' });
+      return;
+    }
+    this.setData({ workerName: user.realName });
+
+    const orders = Store.getAllOrders().filter(o => !Util.isWorkOrderDone(o));
     this.setData({
-      batches,
-      batchIndex: batches.length > 0 ? 0 : -1
+      orders,
+      orderIndex: orders.length > 0 ? 0 : -1
     });
   },
 
-  onNameInput(e) {
-    this.setData({ workerName: e.detail.value });
+  onOrderChange(e) {
+    this.setData({ orderIndex: parseInt(e.detail.value) });
   },
 
-  onBatchChange(e) {
-    this.setData({ batchIndex: parseInt(e.detail.value) });
-  },
-
-  login() {
-    const name = this.data.workerName.trim();
-    if (!name) {
-      wx.showToast({ title: '请输入姓名', icon: 'none' });
-      return;
-    }
-    if (this.data.batches.length === 0) {
-      wx.showToast({ title: '暂无进行中的批次', icon: 'none' });
+  enter() {
+    if (this.data.orders.length === 0) {
+      wx.showToast({ title: '暂无进行中的工单', icon: 'none' });
       return;
     }
 
     const app = getApp();
-    app.globalData.currentWorker = name;
-    app.globalData.currentBatchId = this.data.batches[this.data.batchIndex].id;
+    app.globalData.currentWorker = this.data.workerName;
+    app.globalData.currentOrderId = this.data.orders[this.data.orderIndex].id;
 
     wx.navigateTo({ url: '/pages/worker-ops/worker-ops' });
+  },
+
+  goAdmin() {
+    wx.navigateTo({ url: '/pages/admin-login/admin-login' });
   }
 });

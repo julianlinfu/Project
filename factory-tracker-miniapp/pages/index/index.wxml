@@ -1,27 +1,36 @@
-<view class="home-wrap">
-  <view class="logo-area">
-    <text class="logo-icon">⚙</text>
-    <text class="title">流水线管理</text>
-    <text class="subtitle">选择你的身份进入系统</text>
-  </view>
+<view class="home-wrap" wx:if="{{!loading}}">
 
-  <view class="role-list">
-    <view class="role-card" bindtap="goWorker">
-      <text class="role-emoji">🔧</text>
-      <view class="role-text">
-        <text class="role-name">工人</text>
-        <text class="role-desc">记录工序进度</text>
-      </view>
-      <text class="arrow">→</text>
+  <!-- 未注册 -->
+  <block wx:if="{{status === 'unregistered'}}">
+    <view class="logo-area">
+      <text class="logo-icon">🏭</text>
+      <text class="title">流水线管理</text>
+      <text class="subtitle">首次使用，请先注册</text>
     </view>
+    <button class="btn-primary" bindtap="goRegister">注册加入</button>
+    <view class="admin-entry" bindtap="goAdmin">管理员入口</view>
+  </block>
 
-    <view class="role-card" bindtap="goAdmin">
-      <text class="role-emoji">📊</text>
-      <view class="role-text">
-        <text class="role-name">管理员</text>
-        <text class="role-desc">查看实时进度</text>
-      </view>
-      <text class="arrow">→</text>
+  <!-- 待审批 -->
+  <block wx:elif="{{status === 'pending'}}">
+    <view class="logo-area">
+      <text class="logo-icon">⏳</text>
+      <text class="title">{{realName}}</text>
+      <text class="subtitle">你的账户正在等待管理员审批</text>
+      <text class="hint">请联系管理员通过你的申请</text>
     </view>
-  </view>
+    <button class="btn-refresh" bindtap="checkUser">刷新状态</button>
+    <view class="admin-entry" bindtap="goAdmin">管理员入口</view>
+  </block>
+
+  <!-- 已停用 -->
+  <block wx:elif="{{status === 'disabled'}}">
+    <view class="logo-area">
+      <text class="logo-icon">🚫</text>
+      <text class="title">账户已停用</text>
+      <text class="subtitle">请联系管理员了解详情</text>
+    </view>
+    <view class="admin-entry" bindtap="goAdmin">管理员入口</view>
+  </block>
+
 </view>

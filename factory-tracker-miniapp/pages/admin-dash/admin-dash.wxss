@@ -27,7 +27,86 @@
   border-color: var(--color-primary);
 }
 
-.btn-new-batch {
+.sub-tabs {
+  margin-bottom: 14rpx;
+}
+
+/* ---- 用户管理 ---- */
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.user-card {
+  background: var(--color-surface);
+  border: 1rpx solid var(--color-border);
+  border-radius: 20rpx;
+  padding: 24rpx;
+}
+
+.user-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.user-names {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+}
+
+.user-nickname {
+  font-size: 26rpx;
+  color: var(--color-text-muted);
+}
+
+.user-realname {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.user-meta {
+  font-size: 22rpx;
+  color: #9ca3af;
+  margin-bottom: 16rpx;
+}
+
+.user-actions {
+  display: flex;
+  gap: 12rpx;
+}
+
+.role-badge {
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 6rpx 18rpx;
+  border-radius: 40rpx;
+}
+
+.role-pending { background: var(--color-warning-light); color: var(--color-warning); }
+.role-worker { background: var(--color-success-light); color: var(--color-success); }
+.role-admin { background: var(--color-accent-light); color: var(--color-accent); }
+.role-disabled { background: #f3f4f6; color: #9ca3af; }
+
+.btn-sm {
+  font-size: 22rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 12rpx;
+  font-weight: 500;
+  border: 1rpx solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.btn-edit { color: var(--color-accent); border-color: #bfdbfe; }
+.btn-approve { color: var(--color-success); border-color: #bbf7d0; }
+.btn-disable { color: #ef4444; border-color: #fecaca; }
+
+/* ---- 工单管理 ---- */
+.btn-new-order {
   width: 100%;
   padding: 24rpx;
   background: none;
@@ -38,34 +117,102 @@
   margin-bottom: 28rpx;
 }
 
-.batch-list {
+.order-list {
   display: flex;
   flex-direction: column;
   gap: 24rpx;
 }
 
-.batch-card {
+.order-card {
   background: var(--color-surface);
   border: 1rpx solid var(--color-border);
   border-radius: 24rpx;
   padding: 32rpx;
 }
 
-.batch-header {
+.order-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20rpx;
+  margin-bottom: 8rpx;
 }
 
-.batch-id {
+.order-name {
   font-size: 30rpx;
   font-weight: 600;
 }
 
-.batch-meta {
+.order-actions-top {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.action-icon {
+  font-size: 36rpx;
+  padding: 4rpx 8rpx;
+}
+
+.action-del {
+  font-size: 32rpx;
+}
+
+.order-meta-row {
   font-size: 24rpx;
   color: var(--color-text-muted);
+  margin-bottom: 12rpx;
+}
+
+.order-meta {
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+}
+
+.order-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+.order-id {
+  font-size: 22rpx;
+  color: #9ca3af;
+  background: #f3f4f6;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.order-type {
+  font-size: 22rpx;
+  color: var(--color-accent);
+  background: var(--color-accent-light);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.order-deadline {
+  font-size: 22rpx;
+  color: #ef4444;
+  background: #fef2f2;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.order-alerts {
+  font-size: 24rpx;
+  color: #dc2626;
+  background: #fff5f5;
+  border: 1rpx solid #fecaca;
+  border-radius: 12rpx;
+  padding: 12rpx 16rpx;
+  margin-bottom: 12rpx;
+}
+
+.order-notes {
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+  margin-bottom: 16rpx;
 }
 
 .progress-bar {
@@ -80,7 +227,6 @@
   height: 100%;
   background: var(--color-success);
   border-radius: 6rpx;
-  transition: width 0.4s ease;
 }
 
 .step-row {
@@ -92,9 +238,7 @@
   font-size: 24rpx;
 }
 
-.step-left {
-  color: var(--color-text-muted);
-}
+.step-left { color: var(--color-text-muted); }
 
 .step-right {
   display: flex;
@@ -118,20 +262,9 @@
   border-radius: 40rpx;
 }
 
-.badge-pending {
-  background: #f3f4f6;
-  color: #6b7280;
-}
-
-.badge-active {
-  background: var(--color-warning-light);
-  color: var(--color-warning);
-}
-
-.badge-done {
-  background: var(--color-success-light);
-  color: var(--color-success);
-}
+.badge-pending { background: #f3f4f6; color: #6b7280; }
+.badge-active { background: var(--color-warning-light); color: var(--color-warning); }
+.badge-done { background: var(--color-success-light); color: var(--color-success); }
 
 .empty-state {
   text-align: center;
@@ -140,8 +273,24 @@
   font-size: 28rpx;
 }
 
-.empty-icon {
-  font-size: 72rpx;
-  display: block;
-  margin-bottom: 20rpx;
+.empty-icon { font-size: 72rpx; display: block; margin-bottom: 20rpx; }
+
+/* ---- 回收站 ---- */
+.recycle-hint {
+  font-size: 24rpx;
+  color: #9ca3af;
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.order-card.deleted {
+  opacity: 0.7;
+}
+
+.deleted-badge {
+  font-size: 22rpx;
+  color: #9ca3af;
+  background: #f3f4f6;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
 }
